@@ -1,7 +1,7 @@
 require("dotenv").config();
 const { Client, middleware } = require("@line/bot-sdk");
 const { appendRow, updateStatusByBrand } = require("./sheet");
-const { parseCommand } = require("../utils/parser");
+const { parseCommand } = require("./parser");
 
 const config = {
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
@@ -26,8 +26,7 @@ exports.handler = [
             data.region,
             data.brand,
             data.mid,
-            "待上線",
-            "", "", "", "", ""
+            "待上線", "", "", "", "", ""
           ]);
           await client.replyMessage(event.replyToken, { type: "text", text: `已登記：${data.brand}` });
         }
