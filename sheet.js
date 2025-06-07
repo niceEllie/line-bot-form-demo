@@ -1,5 +1,5 @@
 const { GoogleSpreadsheet } = require("google-spreadsheet");
-const creds = require("./credentials.json");
+const creds = require("/etc/secrets/credentials.json");
 require("dotenv").config();
 
 const doc = new GoogleSpreadsheet(process.env.SPREADSHEET_ID);
