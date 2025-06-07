@@ -43,4 +43,3 @@ console.error("⚠️ 回覆訊息失敗：", error?.originalError?.response?.da
     }
     res.sendStatus(200);
   }
-];
