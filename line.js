@@ -28,8 +28,11 @@ exports.handler = [
             data.mid,
             "待上線", "", "", "", "", ""
           ]);
-          await client.replyMessage(event.replyToken, { type: "text", text: `已登記：${data.brand}` });
-        }
+try {
+  await client.replyMessage(event.replyToken, { type: "text", text: `已登記：${data.brand}` });
+} catch (error) {
+  console.error("⚠️ 回覆訊息失敗：", error.originalError?.response?.data || error);
+}
 
         if (command === "#上線完成") {
           await updateStatusByBrand(data.brand, "工作內容（處理狀態）", "上線完成");
