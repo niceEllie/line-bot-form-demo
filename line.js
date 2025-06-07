@@ -31,7 +31,7 @@ exports.handler = [
 try {
   await client.replyMessage(event.replyToken, { type: "text", text: `已登記：${data.brand}` });
 } catch (error) {
-  console.error("⚠️ 回覆訊息失敗：", error.originalError?.response?.data || error);
+console.error("⚠️ 回覆訊息失敗：", error?.originalError?.response?.data || error?.response?.data || error);
 }
 
         if (command === "#上線完成") {
