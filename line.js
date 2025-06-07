@@ -28,18 +28,38 @@ exports.handler = [
             data.mid,
             "待上線", "", "", "", "", ""
           ]);
-try {
-  await client.replyMessage(event.replyToken, { type: "text", text: `已登記：${data.brand}` });
-} catch (error) {
-console.error("⚠️ 回覆訊息失敗：", error?.originalError?.response?.data || error?.response?.data || error);
-}
-
-        if (command === "#上線完成") {
+          try {
+            await client.replyMessage(event.replyToken, {
+              type: "text",
+              text: `已登記：${data.brand}`,
+            });
+          } catch (error) {
+            console.error(
+              "⚠️ 回覆訊息失敗：",
+              error?.originalError?.response?.data || error?.response?.data || error
+            );
+          }
+        } else if (command === "#上線完成") {
           await updateStatusByBrand(data.brand, "工作內容（處理狀態）", "上線完成");
-          await updateStatusByBrand(data.brand, "完成日期＆時間", new Date().toLocaleString("zh-TW", { timeZone: "Asia/Taipei" }));
-          await client.replyMessage(event.replyToken, { type: "text", text: `已更新：${data.brand} 狀態為上線完成` });
+          await updateStatusByBrand(
+            data.brand,
+            "完成日期＆時間",
+            new Date().toLocaleString("zh-TW", { timeZone: "Asia/Taipei" })
+          );
+          try {
+            await client.replyMessage(event.replyToken, {
+              type: "text",
+              text: `已更新：${data.brand} 狀態為上線完成`,
+            });
+          } catch (error) {
+            console.error(
+              "⚠️ 回覆訊息失敗：",
+              error?.originalError?.response?.data || error?.response?.data || error
+            );
+          }
         }
       }
     }
     res.sendStatus(200);
-  }
+  },
+];
